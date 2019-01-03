@@ -9,6 +9,15 @@ class GamesController {
         database_1.default.query('DESCRIBE games');
         res.json('games');
     }
+    create(req, res) {
+        res.json({ text: 'Create a game' });
+    }
+    delete(req, res) {
+        res.json({ text: 'Deleting a game' });
+    }
+    update(req, res) {
+        res.json({ text: 'Updating a game' });
+    }
 }
 const gamesController = new GamesController();
 exports.default = gamesController;
