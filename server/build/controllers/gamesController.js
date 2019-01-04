@@ -20,7 +20,14 @@ class GamesController {
         });
     }
     getOne(req, res) {
-        res.json({ text: 'Listing One' + req.params.id });
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const games = yield database_1.default.query('SELECT * FROM games WHERE id = ?', [id]);
+            if (games.length > 0) {
+                return res.json(games[0]);
+            }
+            res.status(404).json({ text: "A game not found" });
+        });
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -29,10 +36,18 @@ class GamesController {
         });
     }
     delete(req, res) {
-        res.json({ text: 'Deleting a game' + req.params.id });
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            yield database_1.default.query('DELETE FROM games WHERE id = ?', [id]);
+            res.json({ message: "A game was delete" });
+        });
     }
     update(req, res) {
-        res.json({ text: 'Updating a game' + req.params.id });
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            yield database_1.default.query('UPDATE FROM games set ? WHERE id = ?', [req.body, id]);
+            res.json({ message: "A game was updated" });
+        });
     }
 }
 const gamesController = new GamesController();
