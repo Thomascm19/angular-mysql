@@ -1,34 +1,35 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Game } from '../models/Game';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GameService {
+export class GamesService {
 
-  API_URL: 'http://localhost:3000/api/games'
-  constructor(private http:HttpClient ) {}
+  API_URI = 'http://localhost:3000/api';
 
-  //Retorna todos lo juegos almacenados
-  getGames(){
-    return this.http.get(`${this.API_URL}/games`);
+  constructor(private http: HttpClient) { }
+
+  getGames() {
+    return this.http.get(`${this.API_URI}/games`);
   }
 
-  //Retorna un solo juego
-  getGame(id:string ){
-    return this.http.get(`${this.API_URL}/games/${id}`);
+  getGame(id: string) {
+    return this.http.get(`${this.API_URI}/games/${id}`);
   }
-  //Guarda un juego con la interface creada en el modelo
-  saveGame(game: Game){
-    return this.http.post(`${this.API_URL}/games`,game);
+
+  deleteGame(id: string) {
+    return this.http.delete(`${this.API_URI}/games/${id}`);
   }
-  //Borrando un juego
-  deleteGame(id:string){
-    return this.http.delete(`${this.API_URL}/games/${id}`);
+
+  saveGame(game: Game) {
+    return this.http.post(`${this.API_URI}/games`, game);
   }
-  //Actualizando
-  updateGame(id:string,uptadedGame:Game){
-    return this.http.put(`${this.API_URL}/games/${id}`, this.updateGame)
+
+  updateGame(id: string|number, updatedGame: Game): Observable<Game> {
+    return this.http.put(`${this.API_URI}/games/${id}`, updatedGame);
   }
+
 }

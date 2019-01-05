@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GameService } from '../../services/game.service';
+import { GamesService } from '../../services/game.service';
+
 
 
 @Component({
@@ -9,13 +10,14 @@ import { GameService } from '../../services/game.service';
 })
 export class GameListComponent implements OnInit {
 
-  constructor(private gameservice:GameService) { }
+  constructor(private gameService:GamesService) { }
 
   ngOnInit() {
+    this.gameService.getGames().subscribe(
+      res => console.log(res),
+      err => console.log(err)
+   )
 
-    this.gameservice.getGames(
-      
-    )
   }
 
 }

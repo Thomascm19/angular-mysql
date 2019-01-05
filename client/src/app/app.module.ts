@@ -13,7 +13,7 @@ import { GameFormComponent } from './components/game-form/game-form.component';
 import { GameListComponent } from './components/game-list/game-list.component';
 
 //Servicios
-import { GameService } from '../app/services/game.service';
+import { GamesService } from '../app/services/game.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { GameService } from '../app/services/game.service';
     HttpClientModule
   ],
   providers: [
-    GameService
+    GamesService
   ],
   bootstrap: [AppComponent]
 })
