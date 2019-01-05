@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 
 
 //Rutas
@@ -25,7 +27,8 @@ import { GamesService } from '../app/services/game.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     GamesService
