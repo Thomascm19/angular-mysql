@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from '../../models/Game';
 import { GamesService } from '../../services/game.service';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -18,7 +20,7 @@ export class GameFormComponent implements OnInit {
     created_at: new Date()
   }
 
-  constructor(private gameservice:GamesService ) { }
+  constructor(private gameservice:GamesService, private router:Router ) { }
 
   ngOnInit() {
   }
@@ -28,6 +30,7 @@ export class GameFormComponent implements OnInit {
       .subscribe(
         res => {
           console.log(res);
+          this.router.navigate(['/games'])
         },
         err => console.error(err)
       )
