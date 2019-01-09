@@ -45,7 +45,7 @@ class GamesController {
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('UPDATE FROM games set ? WHERE id = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE games set ? WHERE id = ?', [req.body, id]);
             res.json({ message: "A game was updated" });
         });
     }
